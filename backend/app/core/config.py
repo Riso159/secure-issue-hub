@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -11,7 +13,7 @@ class Settings(BaseSettings):
     session_expire_minutes: int = 60 * 24 * 7  # 7 dní
 
     # Cookie policy (localhost vs prod)
-    cookie_samesite: str = "lax"  # "lax" je ok pre väčšinu web appiek
+    cookie_samesite: Literal["lax", "strict", "none"] = "lax"
     cookie_secure: bool = False  # na localhost False, v produkcii True (HTTPS)
 
     model_config = SettingsConfigDict(
